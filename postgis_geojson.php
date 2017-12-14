@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 $conn = pg_connect("dbname='gisdata' user='username' password='pass' host='localhost'") 
     or die ("Could not connect to server\n");
 
-    $result = pg_fetch_all(pg_query($conn, "SELECT row_to_json(fc)
+$result = pg_fetch_all(pg_query($conn, "SELECT row_to_json(fc)
     FROM ( SELECT 'FeatureCollection' As type, array_to_json(array_agg(f)) As features
     FROM (SELECT 'Feature' As type
     , ST_AsGeoJSON(lg.geom, 4)::json As geometry
